@@ -1,0 +1,13 @@
+@page "/signin-google"
+
+<h3>Signing in...</h3>
+
+@code {
+    [Inject] NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000); // Simulate some processing time
+        NavigationManager.NavigateTo("/"); // Redirect to the home page after successful login
+    }
+}

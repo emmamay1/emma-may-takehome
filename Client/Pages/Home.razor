@@ -1,6 +1,7 @@
 ﻿<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 @page "/"
+@* @using Microsoft.AspNetCore.Components.WebAssembly.Authentication *@
 
 <PageTitle>Home</PageTitle>
 
@@ -8,6 +9,22 @@
 
 Welcome to your new app.
 
-<h1>hey</h1>
+@* <RemoteAuthenticatorView Action="login" /> *@
 
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+@* @code{
+    [Parameter] public string? Action { get; set; }
+} *@
+
+<button @onclick="Login">Login with Google</button>
+
+@code {
+    [Inject] NavigationManager NavigationManager { get; set; } = default!;
+
+    private async Task Login()
+    {
+        await Task.Run(() =>
+        {
+            NavigationManager.NavigateTo("/signin-google");
+        });
+    }
+}
